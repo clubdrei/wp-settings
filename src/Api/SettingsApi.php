@@ -29,14 +29,14 @@ class SettingsApi extends \WeDevs_Settings_API
 
     public function callback_datePickerStart($args)
     {
-        $args['class'] = 'datepicker_period_start';
+        $args['class'] = 'wp_settings_datepicker_period_start';
         $args['type'] = 'text';
         $this->printTextFieldHtml($args);
     }
 
     public function callback_datePickerEnd($args)
     {
-        $args['class'] = 'datepicker_period_end';
+        $args['class'] = 'wp_settings_datepicker_period_end';
         $args['type'] = 'text';
         $this->printTextFieldHtml($args);
     }

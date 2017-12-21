@@ -3,7 +3,7 @@
  */
 jQuery(document).ready(function () {
 
-  jQuery('.datepicker_period_start').datepicker({
+  jQuery('.wp_settings_datepicker_period_start').datepicker({
     // Show the 'close' and 'today' buttons
     showButtonPanel: true,
     closeText: objectL10n.closeText,
@@ -17,10 +17,10 @@ jQuery(document).ready(function () {
     firstDay: objectL10n.firstDay,
     isRTL: objectL10n.isRTL,
     onClose: function (selectedDate) {
-      jQuery('.datepicker_period_end').datepicker('option', 'minDate', selectedDate);
+      jQuery('.wp_settings_datepicker_period_end').datepicker('option', 'minDate', selectedDate);
     }
   });
-  jQuery('.datepicker_period_end').datepicker({
+  jQuery('.wp_settings_datepicker_period_end').datepicker({
     // Show the 'close' and 'today' buttons
     showButtonPanel: true,
     closeText: objectL10n.closeText,
@@ -34,7 +34,7 @@ jQuery(document).ready(function () {
     firstDay: objectL10n.firstDay,
     isRTL: objectL10n.isRTL,
     onClose: function (selectedDate) {
-      jQuery('.datepicker_period_start').datepicker('option', 'maxDate', selectedDate);
+      jQuery('.wp_settings_datepicker_period_start').datepicker('option', 'maxDate', selectedDate);
     }
   });
 });
