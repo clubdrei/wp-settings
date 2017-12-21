@@ -3,7 +3,7 @@
  * @author Christoph Bessei
  */
 
-namespace C3\WpSettings\Settings;
+namespace C3\WpSettings;
 
 use C3\WpSettings\Api\SettingsApi;
 use C3\WpSettings\Exception\InvalidSettingsTabException;
