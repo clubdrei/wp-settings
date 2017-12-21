@@ -1,7 +1,7 @@
 <?php
 namespace C3\WpSettings\Api;
 
-use C3\WpSettings\Settings\Settings;
+use C3\WpSettings\Settings;
 
 /**
  * @author Christoph Bessei

@@ -51,6 +51,7 @@ class Settings
     {
         if (is_string($section)) {
             if (is_a($section, TabInterface::class, true)) {
+                /** @var TabInterface $section */
                 $section = new $section();
                 $options = get_option($section->getId());
             } else {
