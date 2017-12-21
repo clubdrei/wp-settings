@@ -1,6 +1,6 @@
 {
   "name": "c3/wp-settings",
-  "description": "Extend WordPress Settings API. Extends tareq1988/wordpress-settings-api-class",
+  "description": "Extend WordPress Settings API. Uses tareq1988/wordpress-settings-api-class",
   "license": "GPL-2.0",
   "authors": [
     {
