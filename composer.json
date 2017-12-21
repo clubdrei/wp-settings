@@ -1,0 +1,21 @@
+{
+  "name": "c3/wp-settings",
+  "description": "Extend WordPress Settings API. Extends tareq1988/wordpress-settings-api-class",
+  "license": "GPL-2.0",
+  "authors": [
+    {
+      "name": "Christoph Bessei",
+      "email": "chris+wp-settings@clubdrei.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "C3\\WpSettings\\": "src/"
+    }
+  },
+  "require": {
+    "tareq1988/wordpress-settings-api-class": "dev-master"
+  },
+  "require-dev": {
+  }
+}
