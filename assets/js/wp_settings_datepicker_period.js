@@ -7,10 +7,9 @@ jQuery(document).ready(function () {
     showButtonPanel: true
   };
 
-  if (objectL10n) {
+  if (typeof objectL10n !== 'undefined') {
     jQuery.extend(commonOptions, objectL10n);
   }
-
   var startOptions = {
     onClose: function (selectedDate) {
       jQuery('.wp_settings_datepicker_period_end').datepicker('option', 'minDate', selectedDate);
