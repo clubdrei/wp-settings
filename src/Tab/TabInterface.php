@@ -11,4 +11,6 @@ interface TabInterface
     public function getTitle(): string;
 
     public function getFields(): array;
+
+    public static function get(string $option);
 }
