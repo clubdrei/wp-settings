@@ -20,6 +20,12 @@ class SettingsApi extends \WeDevs_Settings_API
     public function __construct()
     {
         parent::__construct();
+
+        wp_enqueue_style(
+            'wp_settings_datepicker',
+            Settings::determineSettingsPathFromWordPressRoot() . 'assets/css/wp_settings_datepicker.css'
+        );
+
         wp_enqueue_script(
             'wp_settings_datepicker_period',
             Settings::determineSettingsPathFromWordPressRoot() . 'assets/js/wp_settings_datepicker_period.js',
