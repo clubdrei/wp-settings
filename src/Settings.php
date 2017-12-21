@@ -45,29 +45,50 @@ class Settings
      * @param mixed $section Object which implements TabInterface or class name of a class which implements TabInterface or id of tab
      * @param mixed $default Default value if the option does not exist
      * @return string
-     * @throws InvalidSettingsTabException
      */
     public static function get(string $option, $section, $default = false)
     {
-        if (is_string($section)) {
-            if (is_a($section, TabInterface::class, true)) {
-                /** @var TabInterface $section */
-                $section = new $section();
-                $options = get_option($section->getId());
-            } else {
-                $options = get_option($section);
-            }
-        } elseif ($section instanceof TabInterface) {
-            $options = get_option($section->getId());
-        } else {
-            throw new InvalidSettingsTabException("Couldn't find settings tab: " . (string)$section);
-        }
+        $options = static::getSection($section);
 
         if (array_key_exists($option, $options)) {
             return $options[$option];
         }
 
         return $default;
+    }
+
+    /**
+     * Get all options of a section
+     *
+     * @param mixed $section Object which implements TabInterface or class name of a class which implements TabInterface or id of tab
+     * @return array
+     */
+    public static function getSection($section): array
+    {
+        try {
+            $options = get_option(static::determineSectionId($section));
+            if (!is_array($options)) {
+                $options = [];
+            }
+        } catch (InvalidSettingsTabException $e) {
+            $options = [];
+        }
+
+
+        return $options;
+    }
+
+    /**
+     * @param string $option
+     * @param $section
+     * @param $value
+     * @throws \C3\WpSettings\Exception\InvalidSettingsTabException
+     */
+    public static function update(string $option, $section, $value)
+    {
+        $options = static::getSection($section);
+        $options[$option] = $value;
+        update_option(static::determineSectionId($section), $options);
     }
 
     public function __construct($options)
@@ -177,5 +198,27 @@ class Settings
         $relPath = substr($wpSettingsRootDirectory, strlen($wpRootDirectory));
         $relPath = '/' . trim($relPath, '/') . '/';
         return $relPath;
+    }
+
+    /**
+     * @param mixed $section Object which implements TabInterface or class name of a class which implements TabInterface or id of tab
+     * @return string
+     * @throws \C3\WpSettings\Exception\InvalidSettingsTabException
+     */
+    protected static function determineSectionId($section): string
+    {
+        if (is_string($section)) {
+            if (is_a($section, TabInterface::class, true)) {
+                /** @var TabInterface $section */
+                $section = new $section();
+                return $section->getId();
+            } else {
+                return $section;
+            }
+        } elseif ($section instanceof TabInterface) {
+            return $section->getId();
+        } else {
+            throw new InvalidSettingsTabException("Couldn't find settings tab: " . (string)$section);
+        }
     }
 }

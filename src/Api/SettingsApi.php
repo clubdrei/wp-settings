@@ -8,6 +8,11 @@ use C3\WpSettings\Settings;
  */
 class SettingsApi extends \WeDevs_Settings_API
 {
+    /**
+     * Simplified wysiwig editor for HTML mails
+     *
+     * @var array
+     */
     protected $defaultMaiLWysiwigOptions = [
         'editor_height' => 300,
         'media_buttons' => false,
