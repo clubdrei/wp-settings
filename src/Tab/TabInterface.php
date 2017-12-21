@@ -12,5 +12,7 @@ interface TabInterface
 
     public function getFields(): array;
 
-    public static function get(string $option);
+    public static function get(string $option, $default = false);
+
+    public static function update(string $option, $value);
 }
