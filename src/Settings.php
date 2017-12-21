@@ -137,6 +137,16 @@ class Settings
         return $fields;
     }
 
+    public function pluginPage()
+    {
+        echo '<div class="wrap">';
+
+        $this->settings_api->show_navigation();
+        $this->settings_api->show_forms();
+
+        echo '</div>';
+    }
+
     /**
      * @return string
      */
@@ -165,15 +175,5 @@ class Settings
         // We assume that $wpSettingsRootDirectory is a subfolder of $wpRootDirectory
         // Remove the common path of both directories and we should get the the relative path to $wpSettings from $wpRootDirectory
         return substr($wpSettingsRootDirectory, strlen($wpRootDirectory));
-    }
-
-    protected function pluginPage()
-    {
-        echo '<div class="wrap">';
-
-        $this->settings_api->show_navigation();
-        $this->settings_api->show_forms();
-
-        echo '</div>';
     }
 }
