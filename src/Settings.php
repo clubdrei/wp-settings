@@ -26,12 +26,12 @@ class Settings
     /**
      * @var array
      */
-    protected $options;
+    protected $options = [];
 
     /**
      * @var \C3\WpSettings\Tab\TabInterface[]
      */
-    protected $tabs;
+    protected $tabs = [];
 
     public static function register($options = []): Settings
     {
@@ -75,17 +75,20 @@ class Settings
         $this->settings_api = new SettingsApi();
         $this->options = $options;
 
-        $this->tabs = [];
-
-        // Each instance has it's own unique tab filter hook
-        $this->tabs = apply_filters($this->getTabFilterHookName(), $this->tabs);
-
         add_action('admin_init', [$this, 'adminInit']);
         add_action('admin_menu', [$this, 'adminMenu']);
     }
 
+    public function addTab(TabInterface $tab)
+    {
+        $this->tabs[get_class($tab)] = $tab;
+    }
+
     public function adminInit()
     {
+        // Each instance has it's own unique tab filter hook
+        $this->tabs = apply_filters($this->getTabFilterHookName(), $this->tabs);
+
         $this->settings_api->set_sections($this->getSettingsSections());
         $this->settings_api->set_fields($this->getSettingsFields());
 
