@@ -174,6 +174,8 @@ class Settings
 
         // We assume that $wpSettingsRootDirectory is a subfolder of $wpRootDirectory
         // Remove the common path of both directories and we should get the the relative path to $wpSettings from $wpRootDirectory
-        return substr($wpSettingsRootDirectory, strlen($wpRootDirectory));
+        $relPath = substr($wpSettingsRootDirectory, strlen($wpRootDirectory));
+        $relPath = '/' . trim($relPath, '/') . '/';
+        return $relPath;
     }
 }
